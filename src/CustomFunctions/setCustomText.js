@@ -7,13 +7,7 @@ export const setCustomText = customProps => {
     ...initialDefaultProps,
     ...customProps
   }
-  Text.render = function render(props) {
-    let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
-    try {
-      return TextRender.apply(this, arguments)
-    } finally {
-      props = oldProps
-    }
+  Text.render = function render(props: any, ref: any) {
+    return TextRender.apply(this, [{ ...props, style: [customProps.style, props.style] }, ref])
   }
 }
