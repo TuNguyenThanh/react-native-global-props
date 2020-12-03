@@ -7,13 +7,7 @@ export const setCustomTextInput = customProps => {
     ...initialDefaultProps,
     ...customProps
   }
-  TextInput.render = function render(props) {
-    let oldProps = props
-    props = { ...props, style: [customProps.style, props.style] }
-    try {
-      return TextInputRender.apply(this, arguments)
-    } finally {
-      props = oldProps
-    }
+  TextInput.render = function render(props: any, ref: any) {
+    return TextInputRender.apply(this, [{ ...props, style: [customProps.style, props.style] }, ref])
   }
 }
